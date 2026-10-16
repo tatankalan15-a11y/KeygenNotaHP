@@ -1,0 +1,21 @@
+{
+  "name": "keygen-nota-service-hp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Keygen untuk aktivasi Nota Service HP (developer only)",
+  "scripts": {
+    "prepare:www": "node scripts/prepare.js",
+    "build:web": "npm run prepare:www && esbuild src/app.js --bundle --format=iife --target=es2020 --outfile=www/app.bundle.js",
+    "android:add": "npm run build:web && npx cap add android && npx cap sync android",
+    "android:sync": "npm run build:web && npx cap sync android",
+    "apk": "cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
